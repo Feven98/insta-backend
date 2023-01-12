@@ -1,8 +1,8 @@
 const express = require('express')
 const router= express.Router()
-const {Posr} = require('../models')
+const {User} = require('../models')
 
-const {createUserToken} = require('../middleware/auth')
+// const {createUserToken} = require('../middleware/auth')
 
 const bcrypt = require('bcrypt')
 // SIGN UP
@@ -13,22 +13,23 @@ try{
     const salt = await bcrypt.genSalt(10)
 
     const passwordHash = await bcrypt.hash(req.body.password, salt)
-    const rawPWStore = req.body.password
+    // const rawPWStore = req.body.password
 
-    req.body.password =  passwordHash
+    // req.body.password =  passwordHash
 
-    const newUser = await Home.create(req.body)
-    if(newUser){ 
-        req.body.password = rawPWStore
-        const authenticatedUserToken = createUserToken(req, newUser);
-    res.status(201).json({
-        home: newUser, 
-        isLoggedIn: true, 
-        token: authenticatedUserToken })
-    } else{
-        res.status(400).json({error: "Something went wrong"})
-    }
-
+    // const newUser = await Home.create(req.body)
+    // if(newUser){ 
+    //     req.body.password = rawPWStore
+    //     const authenticatedUserToken = createUserToken(req, newUser);
+    // res.status(201).json({
+    //     home: newUser, 
+    //     isLoggedIn: true, 
+    //     token: authenticatedUserToken })
+    // } else{
+    //     res.status(400).json({error: "Something went wrong"})
+    // }
+    console.log(req.body.password)
+    res.status(200).send(passwordHash)
 }catch(err){
     res.status(400).json({err: err.message})
 }
