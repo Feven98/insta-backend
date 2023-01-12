@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 const { Strategy, ExtractJwt } = require('passport-jwt')
 
 // User model import, accessed by JWT verify function
-const {Home} = require('../models/Home')
+const {User} = require('../models/User')
 
 // CONFIGURATION
 
@@ -39,7 +39,7 @@ const verify = async (jwt_payload, done) => {
 	  // Using Mongoose's `.findById()` method, we find the user in our database
     try {
 				
-        const home = await Home.findById(jwt_payload.id)
+        const home = await User.findById(jwt_payload.id)
         return done(null, home)
     }catch(err){
 				// If there was an error, we pass it to done so it is eventually handled
