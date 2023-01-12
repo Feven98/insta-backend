@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
     location: String,
     // comment: String,
     owner:{
-        type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true
     }
