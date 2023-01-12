@@ -25,9 +25,9 @@ router.get('/', async (req,res)=>{
 router.post('/',  async (req,res)=>{
     // console.log('post route', req.body)
     try{
-        const owner = req.user._id
-        console.log(owner, req.home)
-        req.body.owner = owner
+        // const owner = req.user._id
+        // console.log(owner, req.home)
+        // req.body.owner = owner
         const newPost= await Post.create(req.body)
         res.status(201).json(newPost)
 
