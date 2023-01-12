@@ -13,7 +13,7 @@ console.log(Post)
 router.get('/', async (req,res)=>{
     // res.status(200).json({message: "insta index route"})
     try{
-        const allPost = await Post.find({}).populate('owner', 'username -_id').exec()
+        const allPost = await Post.find({})
 		// .find({}).populate('owner', 'username -_id').exec()
         res.status(200).json(allPost)
     } catch(err){
@@ -41,7 +41,7 @@ router.post('/',  async (req,res)=>{
 router.get('/:id', async (req,res)=>{
     // res.status(200).json({message: "insta show/get route"})
     try{
-        const showPost= await Post.findById(req.params.id).populate('owner').exec()
+        const showPost= await Post.findById(req.params.id)
         res.status(201).json(showPost)
     } catch(err){
         res.status(400).json({error:err})
