@@ -22,7 +22,7 @@ router.get('/', async (req,res)=>{
 })
 
 // Create route
-router.post('/',  requireToken, async (req,res)=>{
+router.post('/',  async (req,res)=>{
     // console.log('post route', req.body)
     try{
         const owner = req.user._id
@@ -48,7 +48,7 @@ router.get('/:id', async (req,res)=>{
     }
 })
 // DELETE route
-router.delete('/:id', requireToken, async (req,res)=>{
+router.delete('/:id',  async (req,res)=>{
     // res.status(200).json({message: "insta delete/destory route"})
     try{
         handleValidateOwnership(req, await Post.findByIdAndDelete(req.params.id))
@@ -59,7 +59,7 @@ router.delete('/:id', requireToken, async (req,res)=>{
     }
 })
 // UPDATE/PUT route
-router.put('/:id', requireToken, async (req,res)=>{
+router.put('/:id',  async (req,res)=>{
     // res.status(200).json({message: "insta updatte/put route"})
     try {
         handleValidateOwnership(req, await User.findByIdAndDelete(req.params.id))
