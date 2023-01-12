@@ -40,7 +40,7 @@ router.post('/',  async (req,res)=>{
 router.get('/:id', async (req,res)=>{
     // res.status(200).json({message: "insta show/get route"})
     try{
-        const showPost= await Post.findById(req.params.id)
+        const showPost= await Post.findById(req.params.id).populate('owner').exec()
         res.status(201).json(showPost)
     } catch(err){
         res.status(400).json({error:err})
