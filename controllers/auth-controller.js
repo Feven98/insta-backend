@@ -15,21 +15,21 @@ try{
     const passwordHash = await bcrypt.hash(req.body.password, salt)
     // const rawPWStore = req.body.password
 
-    // req.body.password =  passwordHash
+    req.body.password =  passwordHash
 
-    // const newUser = await Home.create(req.body)
+    const newUser = await User.create(req.body)
     // if(newUser){ 
     //     req.body.password = rawPWStore
     //     const authenticatedUserToken = createUserToken(req, newUser);
-    // res.status(201).json({
-    //     home: newUser, 
-    //     isLoggedIn: true, 
+    res.status(201).json({
+        user: newUser, 
+        isLoggedIn: true, 
     //     token: authenticatedUserToken })
     // } else{
     //     res.status(400).json({error: "Something went wrong"})
-    // }
-    console.log(req.body.password)
-    res.status(200).send(passwordHash)
+    })
+    // console.log(req.body.password)
+    // res.status(200).send(passwordHash)
 }catch(err){
     res.status(400).json({err: err.message})
 }
