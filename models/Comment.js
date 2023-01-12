@@ -6,9 +6,9 @@ const mongoose = require('mongoose')
 const CommentSchema = new mongoose.Schema({
    comment: {type: String, required: [true, "need an comment"]},
    body: String,
-//    person: {
-//     type: mongoose.Types.ObjectId, ref: "People"
-//    }
+   person: {
+    type: mongoose.Types.ObjectId, ref: "Post"
+   }
 
 },  {timestamps: true})
 
