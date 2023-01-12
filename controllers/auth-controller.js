@@ -2,7 +2,7 @@ const express = require('express')
 const router= express.Router()
 const {User} = require('../models')
 
-// const {createUserToken} = require('../middleware/auth')
+const {createUserToken} = require('../middleware/auth')
 
 const bcrypt = require('bcrypt')
 // SIGN UP
@@ -41,7 +41,7 @@ try{
 router.post("/login", async (req, res, next) => {
     try {
       const loggingUser = req.body.username;
-      const foundUser = await Home.findOne({ username: loggingUser });
+      const foundUser = await User.findOne({ username: loggingUser });
       const token = await createUserToken(req, foundUser);
       res.status(200).json({
         home: foundUser,
